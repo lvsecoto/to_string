@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      to_string_generator|to_string:
+        enabled: true
+
+builders:
+  to_string:
+    target: ":to_string_generator"
+    import: "package:to_string_generator/builder.dart"
+    builder_factories: ["toString"]
+    build_extensions: {".dart": [".to_string.g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
