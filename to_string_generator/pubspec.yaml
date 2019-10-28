@@ -1,5 +1,6 @@
 name: to_string_generator
 description: Builder and Generator for package to_string
+homepage: https://github.com/lvsecoto/to_string
 version: 0.0.1
 author: lvsecoto <lvsecoto@gmail.com>
 

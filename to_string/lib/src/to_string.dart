@@ -15,7 +15,7 @@
 ///   @override
 ///   String toString() {
 ///     // return "Cat{color: white}"
-///     return _$toString(this);
+///     return _$CatToString(this);
 ///   }
 /// }
 /// ```

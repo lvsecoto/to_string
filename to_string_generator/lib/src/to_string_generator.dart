@@ -4,12 +4,10 @@ import 'package:source_gen/source_gen.dart';
 import 'package:to_string/to_string.dart';
 
 class ToStringGenerator extends GeneratorForAnnotation<ToString> {
-   static const para_class_name = "o";
-   static const to_string_method_name = "_\$toString";
+  static const para_class_name = "o";
+  const ToStringGenerator();
 
-   const ToStringGenerator();
-
-   @override
+  @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     if (!(element is ClassElement)) {
@@ -39,12 +37,18 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
   }
 
   /// Generate 'toString' method that return a string with [clazzName] and [fieldValue]
-  String generateToStringMethodCode(String clazzName, Iterable<String> fieldValue) {
+  String generateToStringMethodCode(
+      String clazzName, Iterable<String> fieldValue) {
     return """
-    String $to_string_method_name($clazzName $para_class_name) {
+    String ${generateToStringMethodName(clazzName)}($clazzName $para_class_name) {
        return "$clazzName{${fieldValue.join(", ")}}";
     }
     """;
+  }
+
+  /// Generate the name for `toString` method of [clazzName]
+  String generateToStringMethodName(String clazzName) {
+    return "_\$${clazzName}ToString";
   }
 
   /// Generate the code of [field] value in method 'toString'

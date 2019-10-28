@@ -1,18 +1,20 @@
 A tools for generating toString method for class, based on `build_runner`.
 
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+## Installation
+
+Add dependencies in your `pubspec.yaml`:
+```yaml
+dependencies:
+  to_string: ^0.0.1
+
+dev_dependencies:
+  to_string_generator: ^0.0.1
+  build_runner: ^1.7.1
+```
 
 ## Usage
 
-Add dependencies to your `pubspec.yaml`:
-```yaml
-dependencies:
-  to_string:
-  
-dev_dependencies:
-  to_string_generator:
-  build_runner:
-```
+In class you want toString() method:
 
 * Annotate the class with `ToString()`
 * Override the `toString` method.
@@ -32,11 +34,10 @@ class Cat {
   
   @override
   String toString() {
-    // [_$toString] is generated at `cat.g.dart`
-    return _$toString();
+    // [_$CatToString] is generated at `cat.g.dart`
+    return _$CatToString(this);
   }
 }
-
 ```
 
 Use [build_runner](https://pub.dev/packages/build_runner)
@@ -51,8 +52,17 @@ In dart
 pub run build_runner build
 ```
 
+Then:
+
+```
+void main() {
+  // result: Cat2{color: black, weight: 1.12}
+  print(Cat("black", 1.12));
+}
+```
+
 ## Features and bugs
 
-Please file feature requests and bugs at the Github Issue.
+Please file feature requests and bugs at the Github Issue Tracker.
 
-Issue tracker: http://example.com/issues/replaceme
+Github Issue tracker: https://github.com/lvsecoto/to_string/issues

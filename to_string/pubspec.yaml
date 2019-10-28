@@ -1,5 +1,6 @@
 name: to_string
 description: A tools for generating toString method for class, based on build_runner
+homepage: https://github.com/lvsecoto/to_string
 version: 0.0.1
 author: lvsecoto <lvsecoto@gmail.com>
 

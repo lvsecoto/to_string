@@ -1,5 +1,6 @@
 name: example
 description: A sample for to_string usage.
+homepage: https://github.com/lvsecoto/to_string
 version: 0.0.1
 author: lvsecoto <lvsecoto@gmail.com>
 
