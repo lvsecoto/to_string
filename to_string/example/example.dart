@@ -1,6 +1,6 @@
 import 'package:to_string/to_string.dart';
 
-part 'cat.g.dart';
+part 'example.g.dart';
 
 @ToString()
 class Cat {
@@ -14,26 +14,10 @@ class Cat {
 
   String wings;
 
-  String _heart = "warm";
-
-  bool get hasWings => wings != null;
-
-  void meow() {
-    print("Meow at the garden.");
-  }
-
-  void _sleep() {
-    print("Sleep in the house.");
-  }
-
-  set gotWings(String wings) {
-    wings = wings;
-  }
-
   /// toString() will return like this:
   ///
   /// ```dart
-  /// 'Cat{classify: $classify, color: $color, weight: $weight, wings: $wings}';
+  /// 'Cat{classify: Animal, color: white, weight: 1.14, wings: null}';
   /// ```
   @override
   String toString() {

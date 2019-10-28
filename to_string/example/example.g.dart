@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cat.dart';
+part of 'example.dart';
 
 // **************************************************************************
 // ToStringGenerator
