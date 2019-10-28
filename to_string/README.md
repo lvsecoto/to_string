@@ -1,3 +1,5 @@
+[![Pub Package](https://img.shields.io/pub/v/to_string.svg)](https://pub.dev/packages/to_string)
+
 A tools for generating toString method for class, based on `build_runner`.
 
 ## Installation
