@@ -16,7 +16,7 @@ jobs:
 
 stages:
   - test
-  -
+
 cache:
   directories:
     - "$HOME/.pub-cache"
