@@ -1,0 +1,26 @@
+language: dart
+
+# Custom configuration
+sudo: required
+addons:
+  chrome: stable
+branches:
+  only:
+    - travis
+
+jobs:
+  include:
+    - stage: test
+      name: "Unit Test"
+      script: ./tool/travis.sh
+
+stages:
+  - test
+  -
+cache:
+  directories:
+    - "$HOME/.pub-cache"
+    - to_string/.dart_tool/build
+    - to_string_generator/.dart_tool/build
+    - example/.dart_tool/build
+
