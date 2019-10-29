@@ -17,3 +17,10 @@ class PublicFieldIncludeDefault {
   String get getter => "getter";
   set setter(String value) {}
 }
+
+@ShouldGenerate(
+  "error"
+)
+class MustError{
+
+}
