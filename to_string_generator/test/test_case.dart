@@ -18,9 +18,3 @@ class PublicFieldIncludeDefault {
   set setter(String value) {}
 }
 
-@ShouldGenerate(
-  "error"
-)
-class MustError{
-
-}
