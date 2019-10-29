@@ -5,7 +5,7 @@ addons:
   chrome: stable
 branches:
   only:
-    - travis
+    - master
 
 jobs:
   include:
