@@ -7,6 +7,8 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
   static const para_class_name = "o";
   const ToStringGenerator();
 
+  static const _toStringTypeChecker = TypeChecker.fromRuntime(ToString);
+
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
@@ -16,25 +18,38 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
     }
 
     final clazzName = element.displayName;
-    final fields = collectField(element);
+    final fields = _collectField(element);
     final fieldValueCodes = fields.map(generateFieldValueStringCode);
 
     return generateToStringMethodCode(clazzName, fieldValueCodes);
   }
 
   /// Collect the field in [clazz]
-  List<FieldElement> collectField(ClassElement clazz) {
-    final fields = <FieldElement>[];
-
-    // We only collect public field, exclude setter and getter
-    clazz.fields.forEach((field) {
-      if (field.isPublic && !field.isSynthetic) {
-        fields.add(field);
-      }
-    });
-
-    return fields;
+  Iterable<FieldElement> _collectField(ClassElement clazz) {
+    return clazz.fields.where(_shouldIncludeField);
   }
+
+  /// Check[field] should be generate in `toString()`
+  bool _shouldIncludeField(FieldElement field) {
+    return _defaultInclude(field) || _getterInclude(field);
+  }
+
+  /// By default, include only field without getter.
+  bool _defaultInclude(FieldElement field) {
+    return field.isPublic && !_isGetter(field);
+  }
+
+  /// Include the getter with annotation [ToString]
+  bool _getterInclude(FieldElement field) {
+    return _isGetter(field) && _hasToStringAnnotation(field.getter);
+  }
+
+  /// Check field is getter
+  bool _isGetter(FieldElement field) => field.isSynthetic && field.getter != null;
+
+  /// Check element has [ToString] Annotation
+  bool _hasToStringAnnotation(Element element) =>
+    _toStringTypeChecker.hasAnnotationOfExact(element);
 
   /// Generate 'toString' method that return a string with [clazzName] and [fieldValue]
   String generateToStringMethodCode(

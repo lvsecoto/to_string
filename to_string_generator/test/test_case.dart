@@ -17,3 +17,15 @@ class PublicFieldIncludeDefault {
   String get getter => "getter";
   set setter(String value) {}
 }
+
+@ShouldGenerate(r"""
+String _$IncludeGetterWithAnnotationToString(IncludeGetterWithAnnotation o) {
+  return "IncludeGetterWithAnnotation{getter: ${o.getter}}";
+}
+""")
+@ToString()
+class IncludeGetterWithAnnotation {
+
+  @ToString()
+  String get getter => "getter";
+}

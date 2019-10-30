@@ -1,12 +1,13 @@
 /// Annotation for generating `toString()` method.
 ///
-/// By default, toString only contain public field.
+/// By default, toString only contain public field exclude getter.
 ///
 /// ```dart
 /// /// cat.dart
 ///
 /// part 'cat.g.dart';
 ///
+/// @ToString()
 /// class Cat {
 ///   var color = "white";
 ///   var _heart = "warm";
