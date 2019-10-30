@@ -1,6 +1,10 @@
-/// Annotation for generating `toString()` method.
+library to_string;
+
+/// Annotation for generating [toString] method.
 ///
 /// By default, toString only contain public field exclude getter.
+///
+/// You can annotate [ToString] to getters to let them shown in [toString]
 ///
 /// ```dart
 /// /// cat.dart
@@ -11,6 +15,8 @@
 /// class Cat {
 ///   var color = "white";
 ///   var _heart = "warm";
+///
+///   @ToString()
 ///   bool get hasWings => false;
 ///
 ///   @override

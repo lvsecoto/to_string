@@ -1,7 +1,7 @@
 name: to_string_generator
 description: Builder and Generator for package to_string
 homepage: https://github.com/lvsecoto/to_string
-version: 0.1.0
+version: 1.0.0
 author: lvsecoto <lvsecoto@gmail.com>
 
 environment:
@@ -12,7 +12,7 @@ dependencies:
   source_gen: ^0.9.4+5
   analyzer: ^0.38.5
 
-  to_string: ^0.0.1
+  to_string: ^1.0.0
 
 dev_dependencies:
   pedantic: ^1.8.0

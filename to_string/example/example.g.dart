@@ -7,5 +7,5 @@ part of 'example.dart';
 // **************************************************************************
 
 String _$CatToString(Cat o) {
-  return "Cat{classify: ${o.classify}, color: ${o.color}, weight: ${o.weight}, wings: ${o.wings}}";
+  return "Cat{classify: ${o.classify}, color: ${o.color}, weight: ${o.weight}, wings: ${o.wings}, hasWings: ${o.hasWings}";
 }

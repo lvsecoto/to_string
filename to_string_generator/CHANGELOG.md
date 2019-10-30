@@ -1,7 +1,11 @@
-# 0.0.1
+# 1.0.0
 
-- Add generator for class public field `toString`.
+- Annotate `ToString()` to getter to let it show in `toString()`
 
 # 0.1.0
 
 - Stable release
+
+# 0.0.1
+
+- Add `ToString` annotation for generating `toString()`

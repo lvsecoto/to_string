@@ -14,10 +14,13 @@ class Cat {
 
   String wings;
 
+  @ToString()
+  bool get hasWings => wings != null;
+
   /// toString() will return like this:
   ///
   /// ```dart
-  /// 'Cat{classify: Animal, color: white, weight: 1.14, wings: null}';
+  /// 'Cat{classify: Animal, color: white, weight: 1.14, wings: null, hasWings: false}';
   /// ```
   @override
   String toString() {
