@@ -34,9 +34,9 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
     return _defaultInclude(field) || _getterInclude(field);
   }
 
-  /// By default, include only field without getter.
+  /// By default, include only field without getter and setter.
   bool _defaultInclude(FieldElement field) {
-    return field.isPublic && !_isGetter(field);
+    return field.isPublic && !field.isSynthetic;
   }
 
   /// Include the getter with annotation [ToString]
@@ -48,8 +48,9 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
   bool _isGetter(FieldElement field) => field.isSynthetic && field.getter != null;
 
   /// Check element has [ToString] Annotation
-  bool _hasToStringAnnotation(Element element) =>
-    _toStringTypeChecker.hasAnnotationOfExact(element);
+  bool _hasToStringAnnotation(Element element) {
+    return _toStringTypeChecker.hasAnnotationOf(element);
+  }
 
   /// Generate 'toString' method that return a string with [clazzName] and [fieldValue]
   String generateToStringMethodCode(
