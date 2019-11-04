@@ -35,10 +35,7 @@ class DefaultInclude implements Include {
   @override
   bool shouldInclude(
       ClassElement clazz, Element member, Map<String, dynamic> configures) {
-    return member is FieldElement &&
-        member.isPublic &&
-        !member.isSynthetic &&
-        !member.isStatic;
+    return member.isPublic && isField(member) && !isStatic(member);
   }
 }
 
@@ -49,9 +46,8 @@ class AnnotatedInclude implements Include {
   @override
   bool shouldInclude(
       ClassElement clazz, Element member, Map<String, dynamic> configures) {
-    return member is FieldElement &&(
-        ((member.getter != null && member.setter == null) ||
-            !member.isSynthetic) &&
-        hasToStringAnnotation(member.getter) || hasToStringAnnotation(member));
+    return (isField(member) && hasToStringAnnotation(member)) ||
+        (isGetter(member) &&
+            hasToStringAnnotation((member as FieldElement).getter));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:to_string_generator/src/generator/helper.dart';
 
 /// Generate toString method code.
 String generateToStringMethod(ClassElement clazz, Iterable<Element> members) =>
@@ -31,5 +32,12 @@ String _memberToString(Element member) {
 }
 
 String _fieldToString(FieldElement field) {
-  return "${field.name}: \${o.${field.name}}";
+  String accessor;
+  if(isStatic(field)) {
+    accessor = field.enclosingElement.name;
+  } else {
+    accessor = "o";
+  }
+
+  return "${field.name}: \${$accessor.${field.name}}";
 }

@@ -51,7 +51,7 @@ class PublicFieldIncludeDefault {
 
 @ShouldGenerate(r"""
 String _$IncludeGetterWithAnnotationToString(IncludeGetterWithAnnotation o) {
-  return "IncludeGetterWithAnnotation{staticPublicField: ${o.staticPublicField}, _staticPrivateField: ${o._staticPrivateField}, publicField: ${o.publicField}, _privateField: ${o._privateField}, staticGetter: ${o.staticGetter}, _privateStaticGetter: ${o._privateStaticGetter}, getter: ${o.getter}, _privateGetter: ${o._privateGetter}}";
+  return "IncludeGetterWithAnnotation{staticPublicField: ${IncludeGetterWithAnnotation.staticPublicField}, _staticPrivateField: ${IncludeGetterWithAnnotation._staticPrivateField}, publicField: ${o.publicField}, _privateField: ${o._privateField}, staticGetter: ${IncludeGetterWithAnnotation.staticGetter}, _privateStaticGetter: ${IncludeGetterWithAnnotation._privateStaticGetter}, getter: ${o.getter}, _privateGetter: ${o._privateGetter}}";
 }
 """)
 @ToString()
@@ -111,4 +111,28 @@ class IncludeGetterWithAnnotation {
   @ToString()
   // ignore: unused_element
   set _setter(String value) {}
+}
+
+@ToString()
+class Parent {
+  var parent1Field;
+  @ToString()
+  static String get _parentGetter => "";
+}
+
+@ToString()
+class Parent2 {
+  var parent2Field;
+  static String get _paren2tGetter => "";
+}
+
+@ShouldGenerate(r"""
+String _$ChildToString(Child o) {
+  return "Child{parent1Field: ${o.parent1Field}, _parentGetter: ${Parent._parentGetter}, parent2Field: ${o.parent2Field}, childField: ${o.childField}}";
+}
+""")
+@ToString()
+class Child with Parent, Parent2{
+  var childField;
+  static String get _getter => "";
 }
