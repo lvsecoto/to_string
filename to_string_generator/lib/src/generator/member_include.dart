@@ -6,7 +6,7 @@ final memberInclude = MemberInclude();
 
 final _include = <Include>[
   const DefaultInclude(),
-  const GetterInclude(),
+  const AnnotatedInclude(),
 ];
 
 abstract class Include {
@@ -42,16 +42,16 @@ class DefaultInclude implements Include {
   }
 }
 
-class GetterInclude implements Include {
-  /// Only include getter with [ToString] annotating
-  const GetterInclude();
+class AnnotatedInclude implements Include {
+  /// Include getter, field with [ToString] annotating
+  const AnnotatedInclude();
 
   @override
   bool shouldInclude(
       ClassElement clazz, Element member, Map<String, dynamic> configures) {
-    return member is FieldElement &&
-        member.isPublic &&
-        member.getter != null &&
-        hasToStringAnnotation(member.getter);
+    return member is FieldElement &&(
+        ((member.getter != null && member.setter == null) ||
+            !member.isSynthetic) &&
+        hasToStringAnnotation(member.getter) || hasToStringAnnotation(member));
   }
 }
