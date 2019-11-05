@@ -6,9 +6,14 @@ import 'package:to_string_generator/src/generator/member_include.dart';
 List<Element> collectClassMemberToString(ClassElement clazz) {
   final members = clazz.fields;
 
-  return clazz.allSupertypes
-      .where((it) => hasToStringAnnotation(it.element))
-      .map((it) => _pickMember(it.element, it.element.fields))
+  final supperElements = <ClassElement>[];
+  supperElements
+      ..add(clazz.supertype.element)
+      ..addAll(clazz.mixins.map((it) => it.element));
+
+  return supperElements
+      .where((it) => hasToStringAnnotation(it))
+      .map((it) => collectClassMemberToString(it))
       .fold<List<Element>>(<Element>[], (previous, element) {
     return previous..addAll(element);
   }) + _pickMember(clazz, members);

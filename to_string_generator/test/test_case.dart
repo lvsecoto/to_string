@@ -113,26 +113,41 @@ class IncludeGetterWithAnnotation {
   set _setter(String value) {}
 }
 
+@ShouldGenerate(r"""
+String _$ChildToString(Child o) {
+  return "Child{grandpaField: ${o.grandpaField}, parentField: ${o.parentField}, _parentGetter: ${Parent._parentGetter}, parent2Field: ${o.parent2Field}, childField: ${o.childField}}";
+}
+""")
 @ToString()
-class Parent {
-  var parent1Field;
+class Child extends Parent with Parent2 {
+  var childField;
+
+  // ignore: unused_element
+  static String get _getter => "";
+}
+
+@ToString()
+class Grandpa {
+  var grandpaField;
+}
+
+class Grandma {
+  var grandmaField;
+}
+
+@ToString()
+class Parent extends Grandpa with Grandma {
+  var parentField;
+
   @ToString()
+  // ignore: unused_element
   static String get _parentGetter => "";
 }
 
 @ToString()
 class Parent2 {
   var parent2Field;
-  static String get _paren2tGetter => "";
-}
 
-@ShouldGenerate(r"""
-String _$ChildToString(Child o) {
-  return "Child{parent1Field: ${o.parent1Field}, _parentGetter: ${Parent._parentGetter}, parent2Field: ${o.parent2Field}, childField: ${o.childField}}";
-}
-""")
-@ToString()
-class Child with Parent, Parent2{
-  var childField;
-  static String get _getter => "";
+  // ignore: unused_element
+  static String get _paren2tGetter => "";
 }
