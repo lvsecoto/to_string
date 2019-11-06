@@ -49,8 +49,8 @@ class Cat {
 }
 ```
 
-By default, getter will not be shown in `toString`. But you can annotate
-`ToString` to getter to make it show.
+By default, getter, static field, and private field will not be shown in 
+`toString`. But you can use `ToString` to make them show.
 
 ```dart
 /// cat.dart
@@ -60,11 +60,17 @@ part 'cat.g.dart';
 
 @ToString()
 class Cat {
+  
+  @ToString()
+  static int leg = 4;
+  
   Cat(this.color, this.weight, this.wings);
   
   String color;
   double weight;
   String wings;
+  
+  String _heart = "warm";
   
   @ToString()
   bool get hasWings => wings != null;
@@ -72,10 +78,43 @@ class Cat {
   @override
   String toString() {
     // [_$CatToString] is generated at `cat.g.dart`,
-    // and it returns likes "Cat{color: white, weight: 1.2, wings: null, hasWings: false}"
+    // and it returns likes this: 
+    // "Cat{leg: Cat.leg, color: white, weight: 1.2, wings: null, _heart: warm, hasWings: false}"
     return _$CatToString(this);
   }
 }
+```
+
+If you annotate `ToString()` to the class\`s supper class or mixin, their
+field (public field and other field with `ToString()`) will be include 
+in the base class method toString.
+
+```dart
+/// cat.dart
+@ToString()
+class Animal {
+  bool needOxygen = true;
+}
+
+@ToString()
+class Rocket {
+  bool canFly = true;
+}
+
+@ToString()
+class Cat extends Animal with Rocket{
+  
+  String name;
+  
+  @override
+  String toString() {
+    // [_$CatToString] is generated at `cat.g.dart`,
+    // and it returns likes this: 
+    // "Cat{needOxygen: true, canFly: true, name: kitty}"
+    return _$CatToString(this);
+  }
+}
+
 ```
 
 Lastly, we use [build_runner](https://pub.dev/packages/build_runner)!
