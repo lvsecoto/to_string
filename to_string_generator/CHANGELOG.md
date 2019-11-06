@@ -1,3 +1,11 @@
+# 1.1.0
+- Private or static field and getter with `ToString()` will be shown in 
+method `toString()`
+
+- Public field, private or static field and getter with `ToString()` in 
+supper class and mixin class with `ToString()`, will be shown in their
+base class method `toString`
+
 # 1.0.1
 
 - Fix bug setter is generated incorrectly.

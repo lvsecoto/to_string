@@ -13,10 +13,10 @@ Add dependencies in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  to_string: ^1.0.1
+  to_string: ^1.1.0
 
 dev_dependencies:
-  to_string_generator: ^1.0.1
+  to_string_generator: ^1.1.0
   build_runner: ^1.7.1
 ```
 
