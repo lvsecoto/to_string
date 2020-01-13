@@ -2,9 +2,11 @@ import 'package:to_string/to_string.dart';
 
 part 'cat.g.dart';
 
-@ToString()
+@ToString(
+  prettyPrint: false,
+)
 class Cat {
-  Cat({this.color, this.weight, this.wings});
+  Cat({this.color, this.weight, this.wings, this.ball});
 
   final classify = "Animal";
 
@@ -15,6 +17,8 @@ class Cat {
   String wings;
 
   String _heart = "warm";
+
+  Ball ball;
 
   bool get hasWings => wings != null;
 
@@ -38,5 +42,17 @@ class Cat {
   @override
   String toString() {
     return _$CatToString(this);
+  }
+}
+
+@ToString()
+class Ball {
+  final String color;
+
+  Ball(this.color);
+
+  @override
+  String toString() {
+    return _$BallToString(this);
   }
 }

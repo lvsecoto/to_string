@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      to_string_generator|to_string:
+        options:
+          prettyPrint: true
+          indent: "  "

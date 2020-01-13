@@ -27,5 +27,17 @@ library to_string;
 /// }
 /// ```
 class ToString {
-  const ToString();
+  /// If [prettyPrint] is set to true, [indent] will be default to "  ".
+  /// Otherwise, indent will be ""
+  const ToString({
+    bool prettyPrint,
+    String indent,
+  })  : this.prettyPrint = prettyPrint,
+        this.indent = (prettyPrint ?? false) ? (indent ?? "  ") : null;
+
+  /// Enable pretty print
+  final bool prettyPrint;
+
+  /// The line indent
+  final String indent;
 }

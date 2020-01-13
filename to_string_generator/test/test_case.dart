@@ -1,9 +1,9 @@
 import 'package:source_gen_test/annotations.dart';
 import 'package:to_string/to_string.dart';
 
-@ShouldGenerate(r"""
-String _$PublicFieldIncludeDefaultToString(PublicFieldIncludeDefault o) {
-  return "PublicFieldIncludeDefault{publicField: ${o.publicField}}";
+@ShouldGenerate("""
+String _\$PublicFieldIncludeDefaultToString(PublicFieldIncludeDefault o) {
+  return \"""PublicFieldIncludeDefault{publicField: \${o.publicField}}\""";
 }
 """)
 @ToString()
@@ -49,9 +49,9 @@ class PublicFieldIncludeDefault {
   set _setter(String value) {}
 }
 
-@ShouldGenerate(r"""
-String _$IncludeGetterWithAnnotationToString(IncludeGetterWithAnnotation o) {
-  return "IncludeGetterWithAnnotation{staticPublicField: ${IncludeGetterWithAnnotation.staticPublicField}, _staticPrivateField: ${IncludeGetterWithAnnotation._staticPrivateField}, publicField: ${o.publicField}, _privateField: ${o._privateField}, staticGetter: ${IncludeGetterWithAnnotation.staticGetter}, _privateStaticGetter: ${IncludeGetterWithAnnotation._privateStaticGetter}, getter: ${o.getter}, _privateGetter: ${o._privateGetter}}";
+@ShouldGenerate("""
+String _\$IncludeGetterWithAnnotationToString(IncludeGetterWithAnnotation o) {
+  return \"""IncludeGetterWithAnnotation{staticPublicField: \${IncludeGetterWithAnnotation.staticPublicField}, _staticPrivateField: \${IncludeGetterWithAnnotation._staticPrivateField}, publicField: \${o.publicField}, _privateField: \${o._privateField}, staticGetter: \${IncludeGetterWithAnnotation.staticGetter}, _privateStaticGetter: \${IncludeGetterWithAnnotation._privateStaticGetter}, getter: \${o.getter}, _privateGetter: \${o._privateGetter}}\""";
 }
 """)
 @ToString()
@@ -113,9 +113,9 @@ class IncludeGetterWithAnnotation {
   set _setter(String value) {}
 }
 
-@ShouldGenerate(r"""
-String _$ChildToString(Child o) {
-  return "Child{grandpaField: ${o.grandpaField}, parentField: ${o.parentField}, _parentGetter: ${Parent._parentGetter}, parent2Field: ${o.parent2Field}, childField: ${o.childField}}";
+@ShouldGenerate("""
+String _\$ChildToString(Child o) {
+  return \"""Child{grandpaField: \${o.grandpaField}, parentField: \${o.parentField}, _parentGetter: \${Parent._parentGetter}, parent2Field: \${o.parent2Field}, childField: \${o.childField}}\"\"\";
 }
 """)
 @ToString()
@@ -151,3 +151,57 @@ class Parent2 {
   // ignore: unused_element
   static String get _paren2tGetter => "";
 }
+
+@ShouldGenerate(r'''
+String _$PrettyPrintToString(PrettyPrint o) {
+  return """PrettyPrint{
+  field1: ${o.field1.toString().split("\n").join("\n  ")},
+  field2: ${o.field2.toString().split("\n").join("\n  ")},
+}""";
+}
+'''
+)
+@ToString(
+  prettyPrint: true,
+)
+class PrettyPrint {
+  String field1;
+  bool field2;
+}
+
+@ShouldGenerate('''
+String _\$PrettyPrintWithTabToString(PrettyPrintWithTab o) {
+  return """PrettyPrintWithTab{
+\tfield1: \${o.field1.toString().split("\\n").join("\\n\t")},
+\tfield2: \${o.field2.toString().split("\\n").join("\\n\t")},
+}""";
+}
+'''
+)
+@ToString(
+  prettyPrint: true,
+  indent: "\t",
+)
+class PrettyPrintWithTab {
+  String field1;
+  bool field2;
+}
+
+@ShouldGenerate(r'''
+String _$PrettyPrintWithFourIndentToString(PrettyPrintWithFourIndent o) {
+  return """PrettyPrintWithFourIndent{
+    field1: ${o.field1.toString().split("\n").join("\n    ")},
+    field2: ${o.field2.toString().split("\n").join("\n    ")},
+}""";
+}
+'''
+)
+@ToString(
+  prettyPrint: true,
+  indent: "    ",
+)
+class PrettyPrintWithFourIndent {
+  String field1;
+  bool field2;
+}
+

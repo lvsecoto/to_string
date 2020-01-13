@@ -1,3 +1,6 @@
+# 1.2.0+1
+- Supports pretty print with annotation `ToString()` or `build.yaml`
+
 # 1.1.0
 - Private or static field and getter with `ToString()` will be shown in 
 method `toString()`

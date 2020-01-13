@@ -13,10 +13,10 @@ Add dependencies in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  to_string: ^1.1.0
+  to_string: ^1.2.0
 
 dev_dependencies:
-  to_string_generator: ^1.1.0
+  to_string_generator: ^1.2.0
   build_runner: ^1.7.1
 ```
 
@@ -85,6 +85,8 @@ class Cat {
 }
 ```
 
+### Supper Class And Mixin
+
 If you annotate `ToString()` to the class\`s supper class or mixin, their
 field (public field and other field with `ToString()`) will be include 
 in the base class method toString.
@@ -115,6 +117,47 @@ class Cat extends Animal with Rocket{
   }
 }
 
+```
+
+### Pretty Print Supports
+
+Pretty print supports nested class indent!
+
+```
+Cat{
+  classify: Animal,
+  color: red,
+  weight: 12.0,
+  wings: has,
+  ball: Ball{         <= nested
+    color: red,
+  },
+}
+```
+
+There are two ways you can enable pretty print:
+
+Use `ToString()` annotation:
+
+```dart
+ToString(
+    prettyPrint: true,
+
+    // default to "  "
+    indent: "  ",
+)
+/// class Cat {...
+```
+
+Create a file `build.yaml` with code and enable all class pretty print:
+```yaml
+targets:
+  $default:
+    builders:
+      to_string_generator|to_string:
+        options:
+          prettyPrint: true
+          indent: "  "
 ```
 
 Lastly, we use [build_runner](https://pub.dev/packages/build_runner)!

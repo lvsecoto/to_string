@@ -6,7 +6,13 @@ import 'package:to_string_generator/src/generator/code_generate.dart';
 import 'package:to_string_generator/src/generator/member_collect.dart';
 
 class ToStringGenerator extends GeneratorForAnnotation<ToString> {
-  const ToStringGenerator();
+  const ToStringGenerator({
+    this.prettyPrint,
+    this.indent,
+  });
+
+  final bool prettyPrint;
+  final String indent;
 
   @override
   generateForAnnotatedElement(
@@ -18,6 +24,13 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
       return null;
     }
 
-    return generateToStringMethod(clazz, collectClassMemberToString(clazz));
+    return generateToStringMethod(
+      clazz,
+      collectClassMemberToString(clazz),
+      Config(
+        prettyPrint: annotation.peek("prettyPrint")?.boolValue ?? prettyPrint,
+        indent: annotation.peek("indent")?.stringValue ?? indent,
+      )
+    );
   }
 }
