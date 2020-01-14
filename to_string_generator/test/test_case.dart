@@ -155,7 +155,7 @@ class Parent2 {
 @ShouldGenerate(r'''
 String _$PrettyPrintToString(PrettyPrint o) {
   return """PrettyPrint{
-  field1: ${o.field1.toString().split("\n").join("\n  ")},
+  field1: ${o.field1},
   field2: ${o.field2.toString().split("\n").join("\n  ")},
 }""";
 }
@@ -166,13 +166,13 @@ String _$PrettyPrintToString(PrettyPrint o) {
 )
 class PrettyPrint {
   String field1;
-  bool field2;
+  Child field2;
 }
 
 @ShouldGenerate('''
 String _\$PrettyPrintWithTabToString(PrettyPrintWithTab o) {
   return """PrettyPrintWithTab{
-\tfield1: \${o.field1.toString().split("\\n").join("\\n\t")},
+\tfield1: \${o.field1},
 \tfield2: \${o.field2.toString().split("\\n").join("\\n\t")},
 }""";
 }
@@ -184,13 +184,13 @@ String _\$PrettyPrintWithTabToString(PrettyPrintWithTab o) {
 )
 class PrettyPrintWithTab {
   String field1;
-  bool field2;
+  Child field2;
 }
 
 @ShouldGenerate(r'''
 String _$PrettyPrintWithFourIndentToString(PrettyPrintWithFourIndent o) {
   return """PrettyPrintWithFourIndent{
-    field1: ${o.field1.toString().split("\n").join("\n    ")},
+    field1: ${o.field1},
     field2: ${o.field2.toString().split("\n").join("\n    ")},
 }""";
 }
@@ -202,6 +202,6 @@ String _$PrettyPrintWithFourIndentToString(PrettyPrintWithFourIndent o) {
 )
 class PrettyPrintWithFourIndent {
   String field1;
-  bool field2;
+  Child field2;
 }
 

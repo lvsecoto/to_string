@@ -3,6 +3,9 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:to_string_generator/src/generator/helper.dart';
 
+import 'helper.dart';
+import 'helper.dart';
+
 class Config {
   final bool prettyPrint;
   final String indent;
@@ -84,7 +87,7 @@ String _fieldToString(FieldElement field, String indent) {
     accessor = "o";
   }
 
-  if (indent.isNotEmpty) {
+  if (indent.isNotEmpty && hasToStringAnnotation(field.type.element)) {
     return "${field.name}: \${$accessor.${field.name}.toString().split(\"\\n\").join(\"\\n$indent\")}";
   } else {
     return "${field.name}: \${$accessor.${field.name}}";
