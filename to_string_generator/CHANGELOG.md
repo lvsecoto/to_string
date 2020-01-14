@@ -1,4 +1,7 @@
-# 1.2.0
+# 1.2.1
+- Fix: Only field with it type annotated `ToString()` can be wrapped output in pretty print.
+
+# 1.2.0+1
 - Supports pretty print with annotation `ToString()` or `build.yaml`
 
 # 1.1.0
