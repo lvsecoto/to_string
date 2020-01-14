@@ -8,10 +8,16 @@ environment:
   sdk: '>=2.2.0 <3.0.0'
 
 dependencies:
-  to_string: ^1.2.0
+  to_string:
+    path: "../to_string"
+
+dependency_overrides:
+  to_string:
+    path: "../to_string"
 
 dev_dependencies:
   pedantic: ^1.8.0
   test: ^1.6.0
   build_runner: ^1.7.1
-  to_string_generator: ^1.2.0
+  to_string_generator:
+    path: "../to_string_generator"
