@@ -1,3 +1,6 @@
+# 1.3.0
+- Updated package dependencies
+
 # 1.2.1
 - Fix: Only field with it type annotated `ToString()` can be wrapped output in pretty print.
 
